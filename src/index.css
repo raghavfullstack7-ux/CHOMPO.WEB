@@ -102,7 +102,34 @@ h3, .card-title {
 
 .badge, .sticker {
   font-family: var(--font-accent);
-  font-size: clamp(11px, 2vw, 14px);
+  font-size: clamp(12px, 2vw, 16px);
+  padding: 4px 12px;
+  background: var(--yellow);
+  color: var(--black);
+  border: 2px solid var(--black);
+  display: inline-block;
+  transform: rotate(-3deg);
+  box-shadow: 3px 3px 0 var(--black);
+  pointer-events: none;
+  z-index: 20;
+}
+
+.sticker.red { background: var(--red-hot); color: var(--white); transform: rotate(5deg); }
+.sticker.black { background: var(--black); color: var(--yellow); transform: rotate(-8deg); }
+
+.background-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: clamp(150px, 40vw, 600px);
+  font-family: var(--font-display);
+  color: var(--black);
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 1;
+  white-space: nowrap;
+  user-select: none;
 }
 
 /* ── LAYOUT ── */
