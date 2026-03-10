@@ -1,26 +1,45 @@
+import { Instagram, Facebook, Twitter, Youtube } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
 const Footer = () => {
   return (
-    <footer className="brutalist-border" style={{ backgroundColor: 'var(--text-color)', color: 'white', padding: '3rem 0', marginTop: '4rem' }}>
+    <footer style={{ backgroundColor: 'var(--black)', color: 'var(--cream)', padding: 'var(--s8) 0', marginTop: 'var(--s10)' }}>
       <div className="container">
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '2rem' }}>
-          <div>
-            <h2 style={{ color: 'var(--accent-color)' }}>CHOMPO</h2>
-            <p style={{ marginTop: '1rem', fontStyle: 'italic' }}>Brutalist flavors. No compromise.</p>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--s7)' }}>
+          
+          {/* Logo Section */}
+          <Link to="/" style={{ textDecoration: 'none' }}>
+            <h2 style={{ color: 'var(--yellow)', fontSize: '40px', fontFamily: 'var(--font-heading)', letterSpacing: '2px' }}>CHIPSNCHOPS</h2>
+          </Link>
+
+          {/* Navigation */}
+          <div style={{ display: 'flex', gap: 'var(--s5)', flexWrap: 'wrap', justifyContent: 'center' }}>
+            {['HOME', 'ABOUT', 'DEALS', 'MENUS', 'CONTACT'].map(label => (
+              <Link 
+                key={label} 
+                to={label === 'HOME' ? '/' : `/${label.toLowerCase()}`}
+                style={{ color: 'var(--cream)', textDecoration: 'none', fontFamily: 'var(--font-body)', fontSize: '14px', fontWeight: 600, letterSpacing: '1px' }}
+              >
+                {label}
+              </Link>
+            ))}
           </div>
-          <div>
-            <h3 className="heading">Hours</h3>
-            <p>Mon-Fri: 11am - 10pm</p>
-            <p>Sat-Sun: 12pm - 11pm</p>
+
+          {/* Social Icons */}
+          <div style={{ display: 'flex', gap: 'var(--s4)' }}>
+            {[Instagram, Facebook, Twitter, Youtube].map((Icon, i) => (
+              <button key={i} className="brutalist-button" style={{ padding: 'var(--s3)', minHeight: 'auto', background: 'var(--yellow)', color: 'var(--black)' }}>
+                <Icon size={20} />
+              </button>
+            ))}
           </div>
-          <div>
-            <h3 className="heading">Contact</h3>
-            <p>123 Brutal Way</p>
-            <p>Flavor City, FC 404</p>
-            <p>hello@chompo.com</p>
+
+          {/* Copyright */}
+          <div style={{ textAlign: 'center', borderTop: '1px solid var(--gray-muted)', width: '100%', paddingTop: 'var(--s6)' }}>
+            <p style={{ color: 'var(--gray-muted)', fontSize: '12px', fontFamily: 'var(--font-body)' }}>
+              © 2025 ChipsNChops. All rights reserved. • CRUNCH RESPONSIBLY.
+            </p>
           </div>
-        </div>
-        <div style={{ marginTop: '3rem', borderTop: '1px solid #444', paddingTop: '1.5rem', textAlign: 'center' }}>
-          <p className="heading" style={{ fontSize: '0.8rem' }}>© 2026 CHOMPO RESTAURANT GROUP. ALL RIGHTS RESERVED.</p>
         </div>
       </div>
     </footer>

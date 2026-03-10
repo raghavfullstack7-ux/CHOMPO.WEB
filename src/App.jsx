@@ -10,7 +10,13 @@ import OrderStatus from './pages/OrderStatus';
 import AdminDashboard from './pages/AdminDashboard';
 import Profile from './pages/Profile';
 import Settings from './pages/Settings';
+import Checkout from './pages/Checkout';
+import About from './pages/About';
+import Deals from './pages/Deals';
+import Testimonials from './pages/Testimonials';
+
 import { AuthProvider } from './context/AuthContext';
+
 import { CartProvider } from './context/CartContext';
 import './App.css';
 
@@ -26,6 +32,10 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/deals" element={<Deals />} />
+          <Route path="/testimonials" element={<Testimonials />} />
           <Route path="/order/:id" element={<OrderStatus />} />
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/profile" element={<Profile />} />

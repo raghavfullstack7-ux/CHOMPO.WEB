@@ -28,47 +28,96 @@ const Menu = () => {
 
   const categories = ['all', 'burgers', 'sides', 'drinks', 'desserts'];
 
-  if (loading) return <div className="container heading" style={{ padding: '4rem 0', fontSize: '2rem' }}>LOADING THE BRUTALITIES...</div>;
+  if (loading) return (
+    <div className="container" style={{ padding: '10vh 0', textAlign: 'center' }}>
+      <h1 className="hero-title">LOADING...</h1>
+      <p className="heading">PREPARING THE CRUNCH.</p>
+    </div>
+  );
 
   return (
-    <div className="container section-padding">
-      <header style={{ marginBottom: '5rem' }}>
-        <motion.h1 
-          initial={{ y: 30, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          style={{ fontSize: 'clamp(4rem, 12vw, 8rem)', marginBottom: '2rem' }}
-        >
-          THE <br /> LINEUP.
-        </motion.h1>
-        
-        <div style={{ display: 'flex', gap: '1rem', marginTop: '3rem', flexWrap: 'wrap', overflowX: 'auto', paddingBottom: '1rem' }}>
+    <div>
+      {/* Hero Strip */}
+      <section style={{ 
+        backgroundColor: 'var(--yellow)', 
+        padding: 'var(--s8) 0',
+        clipPath: 'polygon(0 0, 100% 0, 100% 85%, 0 100%)',
+        marginBottom: '4rem'
+      }}>
+        <div className="container">
+          <motion.h1 
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            className="hero-title"
+            style={{ fontSize: 'clamp(52px, 8vw, 96px)' }}
+          >
+            THE FULL MENU
+          </motion.h1>
+          <p className="heading" style={{ fontSize: '1.2rem', marginTop: '1rem' }}>
+            CRISPY. LOADED. IRRESISTIBLE.
+          </p>
+        </div>
+      </section>
+
+      <div className="container">
+        {/* Sticky Filter Bar */}
+        <div style={{ 
+          position: 'sticky', 
+          top: '80px', 
+          zIndex: 50, 
+          display: 'flex', 
+          gap: 'var(--s3)', 
+          overflowX: 'auto', 
+          padding: '1rem 0',
+          backgroundColor: 'var(--cream)',
+          marginBottom: 'var(--s7)'
+        }} className="hide-scrollbar">
           {categories.map(cat => (
             <button 
               key={cat}
               onClick={() => setCategory(cat)}
-              className={`brutalist-button ${category === cat ? '' : 'secondary'}`}
-              style={{ padding: '0.6rem 2rem', fontSize: '0.9rem' }}
+              className={`brutalist-button ${category === cat ? '' : 'accent'}`}
+              style={{ 
+                padding: 'var(--s2) var(--s5)', 
+                fontSize: '15px',
+                whiteSpace: 'nowrap',
+                backgroundColor: category === cat ? 'var(--black)' : 'transparent',
+                color: category === cat ? 'var(--yellow)' : 'var(--black)',
+                boxShadow: category === cat ? 'none' : 'var(--shadow-hard)'
+              }}
             >
               {cat.toUpperCase()}
             </button>
           ))}
         </div>
-      </header>
 
-      <motion.div 
-        layout
-        style={{ 
-          display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', 
-          gap: '3rem' 
-        }}
-      >
-        <AnimatePresence>
-          {filteredItems.map(item => (
-            <MenuCard key={item._id} item={item} />
-          ))}
-        </AnimatePresence>
-      </motion.div>
+        {/* Product Grid */}
+        <motion.div 
+          layout
+          className="grid grid-cols-mobile-1 grid-cols-tablet-2 grid-cols-desktop-4"
+          style={{ gap: 'var(--s6)', marginBottom: 'var(--s10)' }}
+        >
+          <AnimatePresence>
+            {filteredItems.map(item => (
+              <motion.div
+                layout
+                key={item._id}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <MenuCard item={item} />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
+      </div>
+
+      <style>{`
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      `}</style>
     </div>
   );
 };

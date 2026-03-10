@@ -1,48 +1,235 @@
-import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Flame, Zap, Utensils } from 'lucide-react';
-import Banner from '../components/Banner';
+import { Link } from 'react-router-dom';
+import { 
+  ArrowRight, 
+  Flame, 
+  ShieldCheck, 
+  Zap, 
+  Utensils, 
+  Heart, 
+  Truck, 
+  CheckCircle,
+  Gem
+} from 'lucide-react';
+
+const TickerStrip = () => (
+  <div className="ticker-marquee">
+    <div className="ticker-content">
+      {[...Array(10)].map((_, i) => (
+        <span key={i}>🍟 CRISPY & FRESH ◆ 🧼 HYGIENIC ENVIRONMENT ◆ ✅ QUALITY INGREDIENTS ◆ ❤️ MADE WITH LOVE ◆ 🏠 HOME DELIVERY ◆ &nbsp;</span>
+      ))}
+    </div>
+  </div>
+);
+
+const FeatureIcons = () => {
+  const features = [
+    { icon: <Flame />, label: 'CRISPY & FRESH' },
+    { icon: <ShieldCheck />, label: 'HYGIENIC' },
+    { icon: <Gem />, label: 'QUALITY' },
+    { icon: <Heart />, label: 'WITH LOVE' },
+    { icon: <Truck />, label: 'HOME DELIVERY' },
+  ];
+
+  return (
+    <section style={{ backgroundColor: 'var(--yellow-pale)', padding: 'var(--s8) 0' }}>
+      <div className="container">
+        <div style={{ 
+          display: 'flex', 
+          justifyContent: 'center', 
+          gap: 'var(--s5)', 
+          flexWrap: 'wrap' 
+        }}>
+          {features.map((f, i) => (
+            <motion.div 
+              key={i}
+              whileHover={{ scale: 1.08 }}
+              className="brutalist-card"
+              style={{ 
+                width: '180px', 
+                textAlign: 'center', 
+                padding: 'var(--s5)',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: 'var(--s3)',
+                backgroundColor: 'white'
+              }}
+            >
+              <div style={{ color: 'var(--black)' }}>
+                {f.icon && typeof f.icon === 'object' ? f.icon : null}
+                {/* Fallback if icon is just a component */}
+                {f.icon.type && <f.icon.type {...f.icon.props} size={48} />}
+              </div>
+              <span style={{ fontFamily: 'var(--font-body)', fontWeight: 800, fontSize: '12px' }}>{f.label}</span>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
 
 const Home = () => {
   return (
-    <div className="container">
-      <Banner />
-      
-      {/* Features Section */}
-      <section className="section-padding" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
-        <div className="brutalist-card" style={{ backgroundColor: 'var(--primary-color)' }}>
-          <Flame size={48} />
-          <h2 style={{ marginTop: '1rem' }}>Fire Grilled</h2>
-          <p style={{ marginTop: '1rem' }}>Our patties are kissed by actual flames. No shortcuts, just smoke and heat.</p>
-        </div>
-        <div className="brutalist-card" style={{ backgroundColor: 'var(--secondary-color)' }}>
-          <Zap size={48} />
-          <h2 style={{ marginTop: '1rem' }}>Lightning Fast</h2>
-          <p style={{ marginTop: '1rem' }}>From order to table in record time. We don't believe in waiting for greatness.</p>
-        </div>
-        <div className="brutalist-card" style={{ backgroundColor: 'var(--dark-accent)', color: 'white' }}>
-          <Utensils size={48} />
-          <h2 style={{ marginTop: '1rem' }}>Bold Ingredients</h2>
-          <p style={{ marginTop: '1rem' }}>Sourced from the best, prepared with the most brutal techniques known to man.</p>
+    <div style={{ backgroundColor: 'var(--cream)' }}>
+      {/* SECTION 1: HERO */}
+      <section style={{ 
+        position: 'relative', 
+        backgroundColor: 'var(--yellow)', 
+        minHeight: '90vh',
+        display: 'flex',
+        alignItems: 'center',
+        padding: 'var(--s8) 0',
+        clipPath: 'polygon(0 0, 100% 0, 100% 88%, 0 100%)',
+        zIndex: 10
+      }}>
+        <div className="container" style={{ 
+          display: 'grid', 
+          gridTemplateColumns: '1fr 1fr', 
+          gap: 'var(--s7)',
+          alignItems: 'center'
+        }}>
+          
+          {/* Left: Typography */}
+          <div style={{ position: 'relative', zIndex: 5 }}>
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <h1 className="hero-title" style={{ color: 'var(--black)' }}>
+                DIP<br />
+                <span style={{ position: 'relative' }}>
+                  CHRUNCH
+                  <motion.img 
+                    src="/single_fry.png" 
+                    alt="" 
+                    style={{ 
+                      position: 'absolute', top: '0', right: '-40px', 
+                      width: '120px', transform: 'rotate(45deg)',
+                      pointerEvents: 'none'
+                    }}
+                    animate={{ y: [0, -10, 0], rotate: [45, 48, 45] }}
+                    transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+                  />
+                </span><br />
+                SMILE
+              </h1>
+              
+              <p style={{ 
+                fontFamily: 'var(--font-body)', 
+                fontSize: '18px', 
+                color: 'var(--black)', 
+                maxWidth: '400px',
+                marginTop: 'var(--s5)',
+                fontWeight: 600
+              }}>
+                CHOMPO is loud, joyful, and unapologetically crunchy. 
+                Street food elevated for the bold.
+              </p>
+
+              <Link to="/menu" className="brutalist-button" style={{ marginTop: 'var(--s6)', shadow: 'var(--shadow-orange)' }}>
+                ORDER NOW <ArrowRight size={24} style={{ marginLeft: '10px' }} />
+              </Link>
+            </motion.div>
+          </div>
+
+          {/* Right: Floating Product */}
+          <motion.div 
+            style={{ position: 'relative', display: 'flex', justifyContent: 'center' }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1 }}
+          >
+            <motion.img 
+              src="/hero_chips_box.png" 
+              alt="CHOMPO Fries" 
+              style={{ width: '100%', maxWidth: '600px', filter: 'drop-shadow(20px 20px 0px rgba(0,0,0,0.1))' }}
+              animate={{ y: [0, -20, 0] }}
+              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+            />
+          </motion.div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="section-padding">
-        <div className="brutalist-card" style={{ textAlign: 'center', backgroundColor: 'white' }}>
-          <h2 style={{ fontSize: '3rem' }}>JOIN THE CLUB</h2>
-          <p style={{ margin: '1rem 0' }}>Get 20% off your first order and exclusive access to our "Underground Menu".</p>
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem', marginTop: '2rem' }}>
-            <input 
-              type="email" 
-              placeholder="YOUR EMAIL" 
-              className="brutalist-border" 
-              style={{ padding: '0.75rem 1.5rem', width: '300px', outline: 'none' }}
-            />
-            <button className="brutalist-button">SUBSCRIBE</button>
+      {/* SECTION 2: TRUST TICKER */}
+      <TickerStrip />
+
+      {/* SECTION 3: FEATURES */}
+      <FeatureIcons />
+
+      {/* SECTION 4: ABOUT HIGHLIGHT */}
+      <section style={{ 
+        backgroundColor: 'var(--black)', 
+        color: 'var(--cream)', 
+        padding: 'var(--s9) 0',
+        position: 'relative',
+        marginTop: '-5vh'
+      }}>
+        <div className="container" style={{ 
+          display: 'grid', 
+          gridTemplateColumns: '1fr 2fr', 
+          gap: 'var(--s8)', 
+          alignItems: 'center' 
+        }}>
+          <div style={{ textAlign: 'center' }}>
+            <motion.div 
+              animate={{ rotate: [0, 10, -10, 0] }} 
+              transition={{ repeat: Infinity, duration: 5 }}
+              style={{ fontSize: '120px' }}
+            >
+              🔥
+            </motion.div>
+          </div>
+          <div>
+            <h2 className="section-title" style={{ color: 'var(--yellow)', marginBottom: 'var(--s4)' }}>
+              CRAVING CRISIS?
+            </h2>
+            <p style={{ 
+              fontFamily: 'var(--font-body)', 
+              fontSize: '20px', 
+              maxWidth: '600px',
+              opacity: 0.9
+            }}>
+              Need help? Whether it's an order issue or just a craving crisis — our crew's got you covered. 
+              We don't do boring, we don't do bland, and we definitely don't skip the seasoning.
+            </p>
+            <Link to="/contact" style={{ 
+              display: 'inline-block', 
+              marginTop: 'var(--s5)', 
+              color: 'var(--yellow)', 
+              textDecoration: 'none',
+              fontFamily: 'var(--font-heading)',
+              fontSize: '24px',
+              borderBottom: '3px solid var(--yellow)'
+            }}>
+              GET SUPPORT →
+            </Link>
           </div>
         </div>
       </section>
+
+      {/* SECTION 5: QUICK VIEW MENU CTA */}
+      <section className="section-padding" style={{ textAlign: 'center' }}>
+        <div className="container">
+          <h2 className="section-title">CHOOSE YOUR WEAPON</h2>
+          <div style={{ marginTop: 'var(--s7)' }}>
+             <Link to="/menu" className="brutalist-button accent" style={{ fontSize: '32px', padding: 'var(--s5) var(--s8)' }}>
+               BROWSE THE FULL MENU
+             </Link>
+          </div>
+        </div>
+      </section>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .hero-title { font-size: 52px !important; }
+          section { clip-path: none !important; }
+          .container { grid-template-columns: 1fr !important; }
+          img { max-width: 100% !important; }
+        }
+      `}</style>
     </div>
   );
 };
