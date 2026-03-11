@@ -93,61 +93,96 @@ const ItemDetail = () => {
           {/* Main Info */}
           <div className="grid-cols-desktop-2" style={{ gridColumn: 'span 2' }}>
             <motion.div 
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
+              transition={{ type: "spring", damping: 12 }}
               className="brutalist-card"
-              style={{ padding: 'var(--s7)', backgroundColor: 'var(--white)' }}
+              style={{ padding: 'var(--s7)', backgroundColor: 'var(--white)', position: 'relative', overflow: 'hidden' }}
             >
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 'var(--s4)' }}>
-                <h1 className="hero-title" style={{ fontSize: 'clamp(40px, 8vw, 80px)', margin: 0 }}>{item.name}</h1>
-                <div className="price" style={{ 
-                  backgroundColor: 'var(--yellow)', color: 'var(--black)',
-                  padding: '10px 20px', border: '3px solid var(--black)',
-                  transform: 'rotate(2deg)', alignSelf: 'center'
-                }}>
-                  ${item.price}
+              <div style={{ 
+                position: 'absolute', top: '-20px', right: '-20px', 
+                backgroundColor: 'var(--black)', color: 'var(--yellow)',
+                padding: '30px', transform: 'rotate(15deg)',
+                fontFamily: 'var(--font-heading)', fontSize: '20px',
+                display: 'flex', alignItems: 'center', justifyContent: 'center'
+              }}>
+                FRESH
+              </div>
+
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 'var(--s4)', position: 'relative', zIndex: 2 }}>
+                <div>
+                  <h1 className="hero-title" style={{ fontSize: 'clamp(40px, 8vw, 84px)', margin: 0, lineHeight: 0.9 }}>{item.name}</h1>
+                  <span style={{ 
+                    display: 'inline-block', backgroundColor: 'var(--black)', color: 'white', 
+                    padding: '4px 12px', marginTop: '12px', fontFamily: 'var(--font-body)', 
+                    fontWeight: 800, fontSize: '12px', letterSpacing: '2px' 
+                  }}>
+                    {item.category?.toUpperCase() || 'DELICIOUS'}
+                  </span>
                 </div>
+                <motion.div 
+                  whileHover={{ scale: 1.1, rotate: -3 }}
+                  className="price" 
+                  style={{ 
+                    backgroundColor: 'var(--yellow)', color: 'var(--black)',
+                    padding: '15px 25px', border: '4px solid var(--black)',
+                    transform: 'rotate(2deg)', alignSelf: 'flex-start',
+                    boxShadow: '8px 8px 0px var(--black)',
+                    fontSize: '32px', fontFamily: 'var(--font-heading)'
+                  }}
+                >
+                  ${item.price}
+                </motion.div>
               </div>
               
-              <p style={{ marginTop: 'var(--s6)', fontSize: '18px', color: 'var(--gray-muted)', maxWidth: '700px' }}>
+              <p style={{ marginTop: 'var(--s7)', fontSize: '20px', color: 'var(--black)', maxWidth: '700px', fontWeight: 500, lineHeight: 1.5 }}>
                 {item.description}
               </p>
 
-              <hr style={{ margin: 'var(--s7) 0', border: 'none', borderTop: '2px dashed var(--black)' }} />
+              <div style={{ margin: 'var(--s8) 0', height: '4px', backgroundColor: 'var(--black)', width: '100px' }} />
 
               {/* Customizations */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--s7)' }}>
-                {item.customizationOptions?.map(opt => (
-                  <div key={opt.name}>
-                    <h3 className="section-title" style={{ fontSize: '24px', marginBottom: 'var(--s4)' }}>
-                      CHOOSE YOUR {opt.name}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--s8)' }}>
+                {item.customizationOptions?.map((opt, idx) => (
+                  <motion.div 
+                    key={opt.name}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.2 + idx * 0.1 }}
+                  >
+                    <h3 className="section-title" style={{ fontSize: '28px', marginBottom: 'var(--s5)', display: 'flex', alignItems: 'center', gap: '15px' }}>
+                      <span style={{ backgroundColor: 'var(--black)', color: 'var(--yellow)', width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '18px' }}>{idx + 1}</span>
+                      {opt.name.toUpperCase()}
                     </h3>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', gap: 'var(--s4)' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: 'var(--s4)' }}>
                       {opt.options.map(val => {
                         const isSelected = selectedOptions[opt.name] === val;
                         return (
-                          <button
+                          <motion.button
                             key={val}
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
                             onClick={() => handleOptionChange(opt.name, val)}
                             className="brutalist-card"
                             style={{ 
-                              padding: 'var(--s4)', 
+                              padding: 'var(--s4) var(--s5)', 
                               cursor: 'pointer',
                               backgroundColor: isSelected ? 'var(--yellow)' : 'var(--white)',
-                              borderColor: isSelected ? 'var(--black)' : 'var(--black)',
+                              border: '3px solid var(--black)',
                               display: 'flex',
                               justifyContent: 'space-between',
                               alignItems: 'center',
-                              transition: 'none'
+                              boxShadow: isSelected ? 'inset 4px 4px 0px rgba(0,0,0,0.1)' : '4px 4px 0px var(--black)',
+                              transition: 'all 0.1s ease'
                             }}
                           >
                             <span style={{ fontFamily: 'var(--font-heading)', fontSize: '18px' }}>{val.toUpperCase()}</span>
-                            {isSelected && <Check size={20} />}
-                          </button>
+                            {isSelected && <Check size={20} strokeWidth={3} />}
+                          </motion.button>
                         );
                       })}
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </motion.div>

@@ -27,7 +27,7 @@ const Navbar = () => {
     { name: 'ABOUT', path: '/about' },
     { name: 'DEALS', path: '/deals' },
     { name: 'MENUS', path: '/menu' },
-    { name: 'TESTIMONIAL', path: '/testimonial' },
+    { name: 'TESTIMONIAL', path: '/testimonials' },
     { name: 'CONTACT US', path: '/contact' },
   ];
 
@@ -62,11 +62,11 @@ const Navbar = () => {
           {/* Center Logo */}
           <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>
             <span style={{ 
-              fontFamily: 'var(--font-heading)', 
+              fontFamily: 'var(--font-display)', 
               fontSize: '28px', 
               color: 'var(--yellow)',
-              letterSpacing: '1px'
-            }}>CHIPSNCHOPS</span>
+              letterSpacing: '-1px'
+            }}>CHOMPO</span>
             <span style={{ fontSize: '24px' }}>🍟</span>
           </Link>
 
@@ -80,29 +80,32 @@ const Navbar = () => {
             
             <div style={{ display: 'flex', gap: 'var(--s4)', marginLeft: 'var(--s5)', alignItems: 'center' }}>
               <Link to="/cart" style={{ position: 'relative', color: 'var(--cream)' }}>
-                <ShoppingCart size={22} />
+                <ShoppingCart size={20} />
                 {cartItems.length > 0 && (
                   <span className="badge" style={{ 
                     position: 'absolute', top: '-8px', right: '-12px', 
                     backgroundColor: 'var(--yellow)', color: 'var(--black)',
-                    padding: '2px 5px', border: '1px solid var(--black)',
-                    lineHeight: 1
+                    padding: '1px 5px', border: '1px solid var(--black)',
+                    fontSize: '10px', fontWeight: 900
                   }}>{cartItems.length}</span>
                 )}
               </Link>
               <Link to={user ? "/profile" : "/login"} style={{ color: 'var(--cream)' }}>
-                <User size={22} />
+                <User size={20} />
               </Link>
             </div>
           </div>
 
-          {/* Mobile Menu Trigger */}
-          <div className="mobile-nav-trigger" style={{ display: 'none' }}>
-            <button 
+          {/* Mobile Actions (Visible on Mobile) */}
+          <div className="mobile-actions" style={{ display: 'none', gap: 'var(--s4)', alignItems: 'center' }}>
+             <Link to="/cart" style={{ position: 'relative', color: 'var(--cream)' }}>
+                <ShoppingCart size={22} />
+             </Link>
+             <button 
               onClick={() => setIsOpen(true)}
-              style={{ background: 'none', border: 'none', color: 'var(--yellow)', cursor: 'pointer' }}
+              style={{ background: 'none', border: 'none', color: 'var(--yellow)', cursor: 'pointer', padding: 0 }}
             >
-              <MenuIcon size={32} strokeWidth={3} />
+              <MenuIcon size={28} strokeWidth={3} />
             </button>
           </div>
         </div>
@@ -134,7 +137,7 @@ const Navbar = () => {
           }
           @media (max-width: 1024px) {
             .desktop-nav { display: none !important; }
-            .mobile-nav-trigger { display: block !important; }
+            .mobile-actions { display: flex !important; }
           }
         `}</style>
       </nav>

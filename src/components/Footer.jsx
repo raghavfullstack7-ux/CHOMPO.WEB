@@ -9,7 +9,7 @@ const Footer = () => {
           
           {/* Logo Section */}
           <Link to="/" style={{ textDecoration: 'none' }}>
-            <h2 style={{ color: 'var(--yellow)', fontSize: '40px', fontFamily: 'var(--font-heading)', letterSpacing: '2px' }}>CHIPSNCHOPS</h2>
+            <h2 style={{ color: 'var(--yellow)', fontSize: '40px', fontFamily: 'var(--font-display)', letterSpacing: '-1px' }}>CHOMPO</h2>
           </Link>
 
           {/* Navigation */}
@@ -37,7 +37,7 @@ const Footer = () => {
           {/* Copyright */}
           <div style={{ textAlign: 'center', borderTop: '1px solid var(--gray-muted)', width: '100%', paddingTop: 'var(--s6)' }}>
             <p style={{ color: 'var(--gray-muted)', fontSize: '12px', fontFamily: 'var(--font-body)' }}>
-              © 2025 ChipsNChops. All rights reserved. • CRUNCH RESPONSIBLY.
+              © 2026 CHOMPO. All rights reserved. • CRUNCH RESPONSIBLY.
             </p>
           </div>
         </div>

@@ -14,6 +14,7 @@ import Checkout from './pages/Checkout';
 import About from './pages/About';
 import Deals from './pages/Deals';
 import Testimonials from './pages/Testimonials';
+import Contact from './pages/Contact';
 
 import { AuthProvider } from './context/AuthContext';
 
@@ -34,6 +35,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/deals" element={<Deals />} />
           <Route path="/testimonials" element={<Testimonials />} />
           <Route path="/order/:id" element={<OrderStatus />} />

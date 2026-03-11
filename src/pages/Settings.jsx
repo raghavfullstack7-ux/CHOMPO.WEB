@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { updateMe, updatePassword as updatePasswordApi } from '../utils/api';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Settings as SettingsIcon, Save, Lock, User, AlertCircle, CheckCircle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
@@ -104,10 +104,10 @@ const Settings = () => {
                   <label style={{ fontFamily: 'var(--font-heading)', fontSize: '18px' }}>FULL NAME</label>
                   <input 
                     type="text" 
-                    className="brutalist-border"
+                    className="brutalist-input"
                     value={profileData.name}
                     onChange={(e) => setProfileData({...profileData, name: e.target.value})}
-                    style={{ padding: '15px', width: '100%', fontSize: '16px' }}
+                    style={{ width: '100%' }}
                     required
                   />
                 </div>
@@ -115,10 +115,10 @@ const Settings = () => {
                   <label style={{ fontFamily: 'var(--font-heading)', fontSize: '18px' }}>EMAIL ADDRESS</label>
                   <input 
                     type="email" 
-                    className="brutalist-border"
+                    className="brutalist-input"
                     value={profileData.email}
                     onChange={(e) => setProfileData({...profileData, email: e.target.value})}
-                    style={{ padding: '15px', width: '100%', fontSize: '16px' }}
+                    style={{ width: '100%' }}
                     required
                   />
                 </div>
@@ -144,22 +144,22 @@ const Settings = () => {
                   <label style={{ fontFamily: 'var(--font-heading)', fontSize: '18px' }}>CURRENT PASSWORD</label>
                   <input 
                     type="password" 
-                    className="brutalist-border"
+                    className="brutalist-input"
                     value={passwordData.passwordCurrent}
                     onChange={(e) => setPasswordData({...passwordData, passwordCurrent: e.target.value})}
-                    style={{ padding: '15px', width: '100%', fontSize: '16px', backgroundColor: 'var(--white)', color: 'var(--black)' }}
+                    style={{ width: '100%' }}
                     required
                   />
                 </div>
                 <div style={{ display: 'grid', gap: 'var(--s5)', gridTemplateColumns: '1fr 1fr' }}>
                    <div style={{ display: 'grid', gap: '8px' }}>
                     <label style={{ fontFamily: 'var(--font-heading)', fontSize: '18px' }}>NEW PASSWORD</label>
-                    <input 
+                     <input 
                       type="password" 
-                      className="brutalist-border"
+                      className="brutalist-input"
                       value={passwordData.password}
                       onChange={(e) => setPasswordData({...passwordData, password: e.target.value})}
-                      style={{ padding: '15px', width: '100%', fontSize: '16px', backgroundColor: 'var(--white)', color: 'var(--black)' }}
+                      style={{ width: '100%' }}
                       required
                       minLength={6}
                     />
@@ -168,10 +168,10 @@ const Settings = () => {
                     <label style={{ fontFamily: 'var(--font-heading)', fontSize: '18px' }}>CONFIRM NEW</label>
                     <input 
                       type="password" 
-                      className="brutalist-border"
+                      className="brutalist-input"
                       value={passwordData.passwordConfirm}
                       onChange={(e) => setPasswordData({...passwordData, passwordConfirm: e.target.value})}
-                      style={{ padding: '15px', width: '100%', fontSize: '16px', backgroundColor: 'var(--white)', color: 'var(--black)' }}
+                      style={{ width: '100%' }}
                       required
                     />
                   </div>

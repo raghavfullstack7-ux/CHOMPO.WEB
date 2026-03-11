@@ -77,15 +77,14 @@ const Home = () => {
       <section style={{ 
         position: 'relative', 
         backgroundColor: 'var(--yellow)', 
-        minHeight: '92vh',
+        minHeight: '85vh',
         display: 'flex',
         alignItems: 'center',
-        padding: 'var(--s8) 0',
-        clipPath: 'polygon(0 0, 100% 0, 100% 88%, 0 100%)',
+        padding: '0',
+        clipPath: 'polygon(0 0, 100% 0, 100% 92%, 0 100%)',
         zIndex: 10,
         overflow: 'hidden'
       }}>
-        {/* Editorial Background layer */}
         <motion.div 
           className="background-text"
           animate={{ x: [-50, 50, -50] }}
@@ -93,96 +92,89 @@ const Home = () => {
         >
           CHOMPO CHOMPO
         </motion.div>
+        
         <div className="container" style={{ 
           display: 'grid', 
-          gridTemplateColumns: 'minmax(0, 1.2fr) minmax(0, 0.8fr)', 
+          gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)', 
           gap: 'var(--s8)',
           alignItems: 'center',
           position: 'relative',
-          zIndex: 5
+          zIndex: 5,
+          width: '100%',
+          maxWidth: '1400px'
         }}>
           
-          {/* Left: Typography */}
-          <div style={{ position: 'relative', zIndex: 5 }}>
+          <div style={{ padding: 'var(--s8) 0' }}>
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="hero-title" style={{ color: 'var(--black)', fontSize: 'clamp(64px, 12vw, 140px)', letterSpacing: '-2px' }}>
+              <h1 className="hero-title" style={{ color: 'var(--black)', fontSize: 'clamp(50px, 10vw, 130px)', letterSpacing: '-2px', marginBottom: 'var(--s4)' }}>
                 DIP<br />
                 <span style={{ position: 'relative', color: 'white', WebkitTextStroke: '3px var(--black)' }}>
                   CRUNCH
-                  <motion.img 
-                    src="/single_fry.png" 
-                    alt="" 
-                    style={{ 
-                      position: 'absolute', top: '0', right: '-60px', 
-                      width: '160px', transform: 'rotate(45deg)',
-                      pointerEvents: 'none'
-                    }}
-                    animate={{ y: [0, -15, 0], rotate: [45, 50, 45] }}
-                    transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-                  />
                 </span><br />
                 SMILE
               </h1>
               
               <p style={{ 
                 fontFamily: 'var(--font-body)', 
-                fontSize: '18px', 
+                fontSize: 'clamp(16px, 2vw, 20px)', 
                 color: 'var(--black)', 
-                maxWidth: '400px',
-                marginTop: 'var(--s5)',
-                fontWeight: 600
+                maxWidth: '450px',
+                marginTop: 'var(--s4)',
+                fontWeight: 700,
+                lineHeight: 1.4
               }}>
-                CHOMPO is loud, joyful, and unapologetically crunchy. 
-                Street food elevated for the bold.
+                CHOMPO IS LOUD, JOYFUL, AND UNAPOLOGETICALLY CRUNCHY. 
+                STREET FOOD ELEVATED FOR THE BOLD.
               </p>
 
-              <Link to="/menu" className="brutalist-button" style={{ marginTop: 'var(--s6)', shadow: 'var(--shadow-orange)' }}>
+              <Link to="/menu" className="brutalist-button" style={{ marginTop: 'var(--s6)', background: 'var(--black)', color: 'var(--yellow)' }}>
                 ORDER NOW <ArrowRight size={24} style={{ marginLeft: '10px' }} />
               </Link>
             </motion.div>
           </div>
 
-          <div style={{ position: 'relative', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <motion.div 
-              initial={{ opacity: 0, scale: 0.8, rotate: 5 }}
-              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, type: "spring" }}
-              style={{ position: 'relative' }}
+              style={{ position: 'relative', width: '100%', maxWidth: '600px' }}
             >
               <motion.img 
-                src="/hero_chips_box.png" 
+                src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?q=80&w=1000&auto=format&fit=crop" 
                 alt="CHOMPO Fries" 
-                style={{ width: '100%', maxWidth: '700px', filter: 'drop-shadow(30px 30px 0px rgba(0,0,0,0.15))' }}
-                animate={{ y: [0, -25, 0] }}
-                transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
+                style={{ 
+                  width: '100%', 
+                  filter: 'drop-shadow(20px 20px 0px rgba(0,0,0,0.2))',
+                  border: '8px solid var(--black)',
+                  boxShadow: '15px 15px 0px var(--black)',
+                  borderRadius: '4px'
+                }}
+                animate={{ y: [0, -15, 0] }}
+                transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
               />
 
-              {/* Decorative Stickers to fill space */}
               <motion.div 
                 className="sticker red"
-                style={{ position: 'absolute', top: '10%', right: '-20px' }}
+                style={{ position: 'absolute', top: '10%', right: '-30px', zIndex: 6 }}
                 animate={{ rotate: [5, -5, 5] }}
                 transition={{ repeat: Infinity, duration: 3 }}
               >
-                HOT & FRESH
+                HOT + FRESH
               </motion.div>
 
               <motion.div 
                 className="sticker black"
-                style={{ position: 'absolute', bottom: '15%', left: '-40px' }}
-                animate={{ y: [0, 10, 0] }}
+                style={{ position: 'absolute', bottom: '10%', left: '-30px', zIndex: 6 }}
+                animate={{ y: [0, 8, 0] }}
                 transition={{ repeat: Infinity, duration: 4 }}
               >
                 100% GOLDEN
               </motion.div>
-
-              <div className="sticker" style={{ position: 'absolute', top: '50%', right: '-80px', transform: 'rotate(90deg)' }}>
-                STREET BRED
-              </div>
             </motion.div>
           </div>
         </div>

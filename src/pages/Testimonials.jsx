@@ -20,11 +20,12 @@ const Testimonials = () => {
         </div>
       </section>
 
-      {/* Masonry-ish Grid */}
+      {/* Responsive Grid */}
       <section className="container section-padding">
         <div style={{ 
-          columnCount: '3', 
-          columnGap: 'var(--s6)',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+          gap: 'var(--s6)',
           width: '100%' 
         }}>
           {reviews.map((rev, i) => (
@@ -36,11 +37,9 @@ const Testimonials = () => {
               transition={{ delay: i * 0.1 }}
               className="brutalist-card"
               style={{ 
-                breakInside: 'avoid', 
-                marginBottom: 'var(--s6)',
                 backgroundColor: rev.color,
                 color: rev.textColor || 'var(--black)',
-                padding: 'var(--s6)',
+                padding: 'var(--s5)',
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '15px'
@@ -69,25 +68,53 @@ const Testimonials = () => {
         </div>
       </section>
 
+      {/* Submission Form Section */}
+      <section style={{ backgroundColor: 'var(--cream)', padding: 'var(--s9) 0' }}>
+        <div className="container" style={{ maxWidth: '800px' }}>
+          <motion.div 
+            initial={{ scale: 0.95, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            viewport={{ once: true }}
+            className="brutalist-card"
+            style={{ padding: 'var(--s8)', backgroundColor: 'var(--white)' }}
+          >
+            <h2 className="section-title" style={{ marginBottom: 'var(--s5)' }}>SPILL THE SAUCE</h2>
+            <p className="heading" style={{ marginBottom: 'var(--s6)', fontSize: '18px' }}>HAD A LIFE-CHANGING CRUNCH? SHARE YOUR STORY WITH THE CREW.</p>
+            
+            <form onSubmit={(e) => {
+              e.preventDefault();
+              alert('MESSAGE LOGGED. YOUR LEGEND GROWS.');
+            }} style={{ display: 'grid', gap: 'var(--s5)' }}>
+              <div style={{ display: 'grid', gap: 'var(--s3)' }}>
+                <label className="heading">STREET NAME</label>
+                <input type="text" className="brutalist-input" placeholder="Crunch Lord 4000" required />
+              </div>
+              <div style={{ display: 'grid', gap: 'var(--s3)' }}>
+                <label className="heading">YOUR VERDICT</label>
+                <textarea className="brutalist-input" rows="4" placeholder="It was illegal... in a good way." required style={{ resize: 'none' }}></textarea>
+              </div>
+              <button type="submit" className="brutalist-button accent" style={{ width: '100%', fontSize: '24px' }}>
+                SUBMIT TO THE VOID
+              </button>
+            </form>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Call to Action */}
-      <section style={{ padding: 'var(--s9) 0', textAlign: 'center' }}>
+      <section style={{ padding: 'var(--s9) 0', textAlign: 'center', backgroundColor: 'var(--black)', color: 'var(--yellow)' }}>
          <div className="container">
-            <h2 className="section-title" style={{ fontSize: '48px' }}>HAD A CHOMP?</h2>
+            <h2 className="section-title" style={{ fontSize: '48px', color: 'var(--yellow)' }}>JOIN THE MOVEMENT</h2>
             <p className="heading" style={{ fontSize: '24px', margin: '20px 0 var(--s6)' }}>Tag us @chompo_hq for a chance to be featured & get free fries.</p>
             <div style={{ display: 'flex', justifyContent: 'center', gap: '20px' }}>
-               <button className="brutalist-button" style={{ padding: '20px 40px' }}><Instagram style={{ marginRight: '10px' }} /> INSTAGRAM</button>
-               <button className="brutalist-button secondary" style={{ padding: '20px 40px' }}><Twitter style={{ marginRight: '10px' }} /> TWITTER / X</button>
+               <button className="brutalist-button" style={{ padding: '20px 40px', background: 'var(--yellow)', color: 'var(--black)' }}><Instagram style={{ marginRight: '10px' }} /> INSTAGRAM</button>
+               <button className="brutalist-button" style={{ padding: '20px 40px', border: '3px solid var(--yellow)' }}><Twitter style={{ marginRight: '10px' }} /> TWITTER / X</button>
             </div>
          </div>
       </section>
 
       <style>{`
-        @media (max-width: 1024px) {
-           div[style*="columnCount: '3'"] { column-count: 2 !important; }
-        }
-        @media (max-width: 640px) {
-           div[style*="columnCount: '3'"] { column-count: 1 !important; }
-        }
+        /* Testimonials Styles */
       `}</style>
     </div>
   );

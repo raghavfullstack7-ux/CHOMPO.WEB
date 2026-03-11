@@ -57,7 +57,14 @@ body {
   overflow-x: hidden;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.5s ease;
 }
+
+/* ── PAGE TRANSITIONS ── */
+.fade-enter { opacity: 0; transform: translateY(10px); }
+.fade-enter-active { opacity: 1; transform: translateY(0); transition: opacity 300ms, transform 300ms; }
+.fade-exit { opacity: 1; transform: translateY(0); }
+.fade-exit-active { opacity: 0; transform: translateY(-10px); transition: opacity 300ms, transform 300ms; }
 
 /* ── GRAIN TEXTURE ── */
 body::after {
@@ -269,3 +276,30 @@ h3, .card-title {
   .grid-cols-desktop-3 { grid-template-columns: repeat(3, 1fr); }
   .grid-cols-desktop-4 { grid-template-columns: repeat(4, 1fr); }
 }
+
+/* ── BRUTALIST INPUTS ── */
+.brutalist-input {
+  background: var(--white);
+  border: var(--border);
+  padding: var(--s4);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--black);
+  box-shadow: 4px 4px 0px var(--black);
+  transition: all 0.2s ease;
+}
+
+.brutalist-input:focus {
+  outline: none;
+  box-shadow: 6px 6px 0px var(--yellow);
+  transform: translate(-2px, -2px);
+}
+
+.brutalist-border {
+  border: var(--border);
+  box-shadow: var(--shadow-hard);
+}
+
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
